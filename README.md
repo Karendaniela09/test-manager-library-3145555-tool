@@ -1,5 +1,22 @@
 # test-manager-library-3145555-tool
 
+## Sembrador de demostración
+
+Requiere Node.js 20+ y una API migrada, con el administrador inicial creado. El sembrador usa
+solo los endpoints HTTP (nunca conecta ni escribe directamente en PostgreSQL):
+
+```powershell
+$env:API_URL = "http://localhost:8000/api/v1"
+$env:ADMIN_USERNAME = "admin"
+$env:ADMIN_PASSWORD = "<contraseña-local>"
+npm run seed
+```
+
+Crea 40 libros, 10 socios y 15 préstamos. La tarea de sembrar tres vencidos no puede cumplirse
+bajo el contrato actual: todos los préstamos vencen exactamente 14 días después de crearse y la
+API no admite fechas históricas. El script informa este conflicto y no modifica el contrato ni
+inserta filas directamente.
+
 > **Prueba técnica · Ficha ADSO 3145555**
 > Horario: **miércoles 14 de octubre de 2026, de 6:50 a. m. a 11:00 a. m.** (hora Colombia). Entrega a las **11:00 a. m.**
 
